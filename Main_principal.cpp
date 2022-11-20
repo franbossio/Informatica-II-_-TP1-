@@ -9,11 +9,11 @@ using namespace std;
 void menu(void);
 
 int main(int argc, char *argv[]) {
-	struct city *head=NULL; 
-	struct city *head2=NULL;
-	struct city *head3=NULL;
+	struct city *head_cordoba=NULL; 
+	struct city *head_santaFe=NULL;
+	struct city *head_mendoza=NULL;
 	char op=' ';
-	carga_archivo(&head,&head2,&head3);
+	carga_archivo(&head_cordoba,&head_santaFe,&head_mendoza);
 	do{
 		menu();
 		cin>>op;
@@ -21,65 +21,75 @@ int main(int argc, char *argv[]) {
 		case 'a': 
 		case 'A':
 			cout<<"-----------------------------------------------------------"<<endl;
-			total_muestras(&head,"Cordoba");
-			total_muestras(&head2,"Santa Fe");
-			total_muestras(&head3,"Mendoza");
+			total_muestras(&head_cordoba,"Cordoba");
+			total_muestras(&head_santaFe,"Santa Fe");
+			total_muestras(&head_mendoza,"Mendoza");
 			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'b': 
 		case 'B':
 			cout<<"-----------------------------------------------------------"<<endl;
-			temp_prom_prov(&head,"Cordoba");
-			temp_prom_prov(&head2,"Santa Fe");
-			temp_prom_prov(&head3,"Mendoza");
+			temp_prom_prov(&head_cordoba,"Cordoba");
+			temp_prom_prov(&head_santaFe,"Santa Fe");
+			temp_prom_prov(&head_mendoza,"Mendoza");
 			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'c': 
 		case 'C':
 			cout<<"-----------------------------------------------------------"<<endl;
 			cout<<"Cordoba:"<<endl;
-			temp_prom_city(&head);
+			temp_prom_city(&head_cordoba);
 			cout<<"Santa Fe:"<<endl;
-			temp_prom_city(&head2);
+			temp_prom_city(&head_santaFe);
 			cout<<"Mendoza:"<<endl;
-			temp_prom_city(&head3);
+			temp_prom_city(&head_mendoza);
 			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'd': 
 		case 'D':
-			ciudad_calida(&head,"Cordoba");
-			ciudad_calida(&head2,"Santa Fe");
-			ciudad_calida(&head3,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
+			ciudad_calida(&head_cordoba,"Cordoba");
+			ciudad_calida(&head_santaFe,"Santa Fe");
+			ciudad_calida(&head_mendoza,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'e': 
 		case 'E':
-			ciudad_fria(&head,"Cordoba");
-			ciudad_fria(&head2,"Santa Fe");
-			ciudad_fria(&head3,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
+			ciudad_fria(&head_cordoba,"Cordoba");
+			ciudad_fria(&head_santaFe,"Santa Fe");
+			ciudad_fria(&head_mendoza,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'f': 
 		case 'F':
-			dia_frio(&head,"Cordoba");
-			dia_frio(&head2,"Santa Fe");
-			dia_frio(&head3,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
+			dia_frio(&head_cordoba,"Cordoba");
+			dia_frio(&head_santaFe,"Santa Fe");
+			dia_frio(&head_mendoza,"Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'g': 
 		case 'G':
-			dia_calido(&head,"Cordoba");
-			dia_calido(&head2,"Santa Fe");
-			dia_calido(&head3, "Mendoza");
+			cout<<"-----------------------------------------------------------"<<endl;
+			cout<<"Cordoba:"<<endl;
+			dia_calido(&head_cordoba);
+			cout<<"Santa Fe:"<<endl;
+			dia_calido(&head_santaFe);
+			cout<<"Mendoza:"<<endl;
+			dia_calido(&head_mendoza);
+			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		case 'h': 
 		case 'H':
-			best_prov(&head,&head2,&head3);
+			cout<<"-----------------------------------------------------------"<<endl;
+			mejor_provincia_cultivos(&head_cordoba,&head_santaFe,&head_mendoza);
+			cout<<"-----------------------------------------------------------"<<endl;
 			break;
 		}
 		cout<<"¿Deseas continuar(s/n)?:"<<endl;
 		cin>>op;
 	} while(op=='s'||op=='S');
-	
-	
-	
 	return 0;
 }
 

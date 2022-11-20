@@ -31,10 +31,21 @@ void check(struct city **head){
 		exit(1);
 	}
 }
-
+void agregar(struct city **head, struct city **nuevo){
+	struct city *aux=NULL;
+	if(*head==NULL){
+		*head=*nuevo;
+	}else{
+		aux=*head;
+		while(aux->next!=NULL){
+			aux=aux->next;
+		}
+		aux->next=*nuevo;
+	}
+}
+	
 void carga_archivo(struct city **head,struct city **head2,struct city **head3){
 	struct city *nuevo=NULL;
-	struct city *aux=NULL;
 	int ID, prov, hh, mm, day, month;
 	char ciudad[50];
 	float temp, hum;
@@ -47,86 +58,30 @@ void carga_archivo(struct city **head,struct city **head2,struct city **head3){
 	while(!arch.eof()){//mientras no sea el final del archivo
 		arch>>ID>>prov>>ciudad>>temp>>hum>>hh>>mm>>day>>month;
 		if(!arch.eof()){
+			nuevo=(struct city *)malloc(sizeof(struct city)+sizeof(struct measurement)+sizeof(struct timestamp));
+			if(nuevo==NULL){
+				cout<<"No hay memoria suficiente."<<endl;
+				exit(1);
+			}
+			nuevo->cityID=ID;
+			nuevo->prov=prov;
+			strcpy(nuevo->city_name,ciudad);
+			nuevo->m.temp=temp;
+			nuevo->m.hum=hum;
+			nuevo->m.time.hh=hh;
+			nuevo->m.time.mm=mm;
+			nuevo->m.time.day=day;
+			nuevo->m.time.month=month;
+			nuevo->next=NULL;
 			if(prov==1){
-				nuevo=(struct city *)malloc(sizeof(struct city)+sizeof(struct measurement)+sizeof(struct timestamp));
-				if(nuevo==NULL){
-					cout<<"No hay memoria suficiente."<<endl;
-					exit(1);
-				}
-				nuevo->cityID=ID;
-				nuevo->prov=prov;
-				strcpy(nuevo->city_name,ciudad);
-				nuevo->m.temp=temp;
-				nuevo->m.hum=hum;
-				nuevo->m.time.hh=hh;
-				nuevo->m.time.mm=mm;
-				nuevo->m.time.day=day;
-				nuevo->m.time.month=month;
-				nuevo->next=NULL;
-				if(*head==NULL){
-					*head=nuevo;
-				}else{
-					aux=*head;
-					while(aux->next!=NULL){
-						aux=aux->next;
-					}
-					aux->next=nuevo;
-				}
+				agregar(head,&nuevo);
 			}
 			if(prov==2){
-				nuevo=(struct city *)malloc(sizeof(struct city)+sizeof(struct measurement)+sizeof(struct timestamp));
-				if(nuevo==NULL){
-					cout<<"No hay memoria suficiente."<<endl;
-					exit(1);
-				}
-				nuevo->cityID=ID;
-				nuevo->prov=prov;
-				strcpy(nuevo->city_name,ciudad);
-				nuevo->m.temp=temp;
-				nuevo->m.hum=hum;
-				nuevo->m.time.hh=hh;
-				nuevo->m.time.mm=mm;
-				nuevo->m.time.day=day;
-				nuevo->m.time.month=month;
-				nuevo->next=NULL;
-				if(*head2==NULL){
-					*head2=nuevo;
-				}else{
-					aux=*head2;
-					while(aux->next!=NULL){
-						aux=aux->next;
-					}
-					aux->next=nuevo;
-				}
+				agregar(head2,&nuevo);
 			}
 			if(prov==3){
-				nuevo=(struct city *)malloc(sizeof(struct city)+sizeof(struct measurement)+sizeof(struct timestamp));
-				if(nuevo==NULL){
-					cout<<"No hay memoria suficiente."<<endl;
-					exit(1);
-				}
-				nuevo->cityID=ID;
-				nuevo->prov=prov;
-				strcpy(nuevo->city_name,ciudad);
-				nuevo->m.temp=temp;
-				nuevo->m.hum=hum;
-				nuevo->m.time.hh=hh;
-				nuevo->m.time.mm=mm;
-				nuevo->m.time.day=day;
-				nuevo->m.time.month=month;
-				nuevo->next=NULL;
-				if(*head3==NULL){
-					*head3=nuevo;
-				}else{
-					aux=*head3;
-					while(aux->next!=NULL){
-						aux=aux->next;
-					}
-					aux->next=nuevo;
-				}
+				agregar(head3,&nuevo);
 			}
-			
-			
 		}
 	}
 	arch.close();

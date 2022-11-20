@@ -8,7 +8,6 @@ using namespace std;
 
 void menu(void);
 
-
 int main(int argc, char *argv[]) {
 	struct city *head=NULL; 
 	struct city *head2=NULL;

@@ -62,7 +62,7 @@ void carga_archivo(struct city **head_cordoba,struct city **head_santaFe,struct 
 	while(!arch.eof()){//mientras no sea el final del archivo
 		arch>>ID>>prov>>ciudad>>temp>>hum>>hh>>mm>>day>>month;
 		if(!arch.eof()){
-			nuevo=(struct city *)malloc(sizeof(struct city)+sizeof(struct measurement)+sizeof(struct timestamp));
+			nuevo=(struct city *)malloc(sizeof(struct city));
 			if(nuevo==NULL){
 				cout<<"No hay memoria suficiente."<<endl;
 				exit(1);
@@ -95,7 +95,7 @@ void carga_archivo(struct city **head_cordoba,struct city **head_santaFe,struct 
 void total_muestras(struct city **head,string state){
 	struct city *aux=NULL;
 	int total=0;
-	check(head);//pregunto si la lista esta vacia
+	check(head);
 	aux=*head;
 	while(aux!=NULL){
 		total++;

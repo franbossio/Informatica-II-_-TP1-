@@ -217,7 +217,7 @@ void dia_frio(struct city **head, string state){
 	struct city *actual=NULL;
 	float menor=100;
 	int day_city=0, month_city=0;
-	check(head);//pregunto si la lista esta vacia
+	check(head); //pregunto si la lista esta vacia
 	actual=*head;
 	while(actual!=NULL){
 		if(actual->m.temp<menor){
